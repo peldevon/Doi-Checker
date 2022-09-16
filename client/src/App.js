@@ -59,11 +59,15 @@ function App() {
     <div className="">
       <Navbar bg="light" expand="lg"></Navbar>
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      {/* Add svg from link */}
+      <div>
+        <img src="https://www.emu.edu.tr/static/images/logos/logo-name-tr.svg" alt="logo" height={80} width={100}></img>
+      </div>
+        <Navbar.Brand href="#home">DOI Checker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="https://www.emu.edu.tr/tr">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
           </Nav>
         </Nav>
