@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import "./app.css";
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 
 function App() {
@@ -56,51 +57,64 @@ function App() {
 
   return (
     <div className="">
-    <div className="card-body d-flex">
-      <input
-        className="search"
-        placeholder="Search..."
-        onChange={(e) => setQuery(e.target.value.toLowerCase())}
-      />
-      <span className="mr-3">
+      <Navbar bg="light" expand="lg"></Navbar>
+      <Container>
+        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Nav id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+          </Nav>
+        </Nav>
 
-      <button className="btn btn-secondary" onClick={handleSearch}>Search</button>
-      </span>
-    </div>
-      <div className="card-body">
+        <div className="form-group d-flex">
+          <input
+            className="form-control mr-2"
+            placeholder="Search..."
+            style={{ width: "80%" }}
+            onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          />
+          <span className="mr-3">
 
-        {error && <div>Something went wrong ...</div>}
-        {loading ? (
-          <div>Loading ...</div>
-        ) :
-          (
-            <div className="p-2">
-              <div className="row w-100">
-                <div className="col-12">
-                  <div className="card">
+            <button className="btn btn-secondary" onClick={handleSearch}>Search</button>
+          </span>
+        </div>
+        <div className="card-body">
 
-                    <div className="card-body">
+          {error && <div>Something went wrong ...</div>}
+          {loading ? (
+            <div>Loading ...</div>
+          ) :
+            data && (
+              <div className="p-2">
+                <div className="row w-100">
+                  <div className="col-12">
+                    <div className="card">
 
-                      <h4 className="card-title">{data?.title}</h4>
-                      <p className="card-text">DOI: {data?.DOI}</p>
-                      <p className="card-text"><h3>Publisher:</h3> {data?.publisher}</p>
-                      <h3>Authors</h3>
-                      {data?.author?.map((author) => (
-                        <p className="card-text">{author?.family}, {author?.given}</p>
-                      ))}
-                      <br></br>
-                      <button className="btn btn-secondary" onClick={calculateCitations}>Calculate Citations</button>
-                      <br></br>
-                      <div>
-                        <h3>Citation Score: {score}</h3>
+                      <div className="card-body">
+
+                        <h4 className="card-title">{data?.title}</h4>
+                        <p className="card-text">DOI: {data?.DOI}</p>
+                        <p className="card-text"><span className="font-weight-500">Publisher:</span> {data?.publisher}</p>
+                        <h6>Authors</h6>
+                        {data?.author?.map((author) => (
+                          <p className="card-text">{author?.family}, {author?.given}</p>
+                        ))}
+                        <br></br>
+                        <button className="btn btn-secondary" onClick={calculateCitations}>Calculate Citations</button>
+                        <br></br>
+                        <div>
+                          <h3>Citation Score: {score}</h3>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-      </div>
+            )}
+        </div>
+      </Container>
     </div>
   );
 }
